@@ -21,6 +21,7 @@ namespace fwsync
 			void Client::connect(const char*, int);
 
 		private:
+			void Client::ReadFromSocket(Socket*);
 
 	};
 

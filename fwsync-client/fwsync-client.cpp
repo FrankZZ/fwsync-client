@@ -1,5 +1,7 @@
 #include "fwsync-client.h"
 
+using namespace std;
+
 namespace fwsync
 {
 	Client::Client()
@@ -9,28 +11,31 @@ namespace fwsync
 
 	Client::~Client()
 	{
-
+		/*
+		socket->close();
+		delete socket;
+		*/
 	};
 
 	void Client::connect(const char* szIp, int iPort)
 	{
 		ClientSocket* socket = new ClientSocket(szIp, iPort);
+		
+		ReadFromSocket(socket); //Read welcome message
 
-		char line[MAXPATH + 1];
+		string szLine;
 
-		while (socket->readline(line, MAXPATH))
+		while (getline(std::cin, szLine))
 		{
-			vector<string> params = *new vector<string>();
-			cout << line << "\r\n";
+			socket->writeline(szLine.c_str());
 
-			strsplit(line, params);
+			vector<string> params = *new vector<string>();
+
+			strsplit(szLine, params);
 
 			if (params.size() > 0)
 			for (int i = 0; i < params[0].length(); i++)
 				params[0][i] = tolower(params[0][i]);
-
-			// echo request to terminal
-			cout << "Got request: " << params[0] << "\r\n";
 
 			CommandHandler* pCommand = CommandFactory::create(params[0]);
 
@@ -39,9 +44,20 @@ namespace fwsync
 				pCommand->process(socket, params);
 			}
 			else
-				cout << "Unexpected response from server\r\n";
+				CommandFactory::create("DEFAULT")->process(socket, params);
 		}
-		
+
 		delete socket;
+	}
+
+	void Client::ReadFromSocket(Socket* socket)
+	{
+		char line[MAXPATH + 1];
+
+		while (socket->readline(line, MAXPATH) > 0)
+		{
+			//vector<string> params = *new vector<string>();
+			cout << line << "\n";
+		}
 	}
 }

@@ -30,9 +30,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="socket.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="fwsync-client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,10 +48,13 @@
     <ClInclude Include="GetCommandHandler.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="InfoCommandHandler.h">
+    <ClInclude Include="QuitCommandHandler.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="QuitCommandHandler.h">
+    <ClInclude Include="Socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultCommandHandler.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,17 +65,11 @@
     <ClCompile Include="fwsync-client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="socket.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GetCommandHandler.cpp">
-      <Filter>Source Files\Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="InfoCommandHandler.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
     <ClCompile Include="QuitCommandHandler.cpp">
@@ -85,6 +79,12 @@
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
     <ClCompile Include="CommandFactory.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultCommandHandler.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>

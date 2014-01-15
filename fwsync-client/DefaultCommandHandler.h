@@ -1,24 +1,23 @@
 #pragma once
 #include "CommandHandler.h"
 #include <string>
-#include <vector>
 #include "socket.h"
-#include "time.h"
+#include "constants.h"
 
 namespace fwsync
 {
 
-	class InfoCommandHandler : public CommandHandler
+	class DefaultCommandHandler : public CommandHandler
 	{
 	private:
-		InfoCommandHandler();
-		InfoCommandHandler(std::string);
+		DefaultCommandHandler();
+		DefaultCommandHandler(std::string);
 
 	public:
 		virtual void process(ClientSocket*, std::vector<std::string>&);
 		virtual CommandHandler* clone();
 
 	private:
-		static InfoCommandHandler m_infoCmdHandler;
+		static DefaultCommandHandler m_infoCmdHandler;
 	};
 }
