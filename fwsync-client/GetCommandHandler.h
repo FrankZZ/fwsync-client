@@ -1,6 +1,9 @@
 #pragma once
 #include "CommandHandler.h"
 #include <string>
+#include <iostream>
+#include <fstream>
+#include "constants.h"
 
 namespace fwsync
 {

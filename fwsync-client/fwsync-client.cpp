@@ -27,13 +27,15 @@ namespace fwsync
 
 		while (getline(std::cin, szLine))
 		{
+			if (szLine.size() == 0)
+				continue;
+
 			socket->writeline(szLine.c_str());
 
 			vector<string> params = *new vector<string>();
 
 			strsplit(szLine, params);
 
-			if (params.size() > 0)
 			for (int i = 0; i < params[0].length(); i++)
 				params[0][i] = tolower(params[0][i]);
 
