@@ -12,6 +12,6 @@ namespace fwsync
 		"\\";
 #endif
 
-	static const int BUFFERSIZE = 1024;
+	static const int BUFFERSIZE = 4096;
 
 }

@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Commands">
       <UniqueIdentifier>{1518965c-3fe3-49db-8057-ae983271e3fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Exceptions">
+      <UniqueIdentifier>{90931d2c-8207-4a86-a9f3-99331f32ed20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -56,6 +59,9 @@
     </ClInclude>
     <ClInclude Include="DefaultCommandHandler.h">
       <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketException.h">
+      <Filter>Header Files\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

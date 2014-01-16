@@ -47,6 +47,8 @@ namespace fwsync
 			}
 			else
 				CommandFactory::create("DEFAULT")->process(socket, params);
+			
+			delete pCommand;
 		}
 
 		delete socket;
