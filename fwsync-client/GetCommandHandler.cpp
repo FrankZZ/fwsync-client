@@ -16,37 +16,38 @@ namespace fwsync
 
 	void GetCommandHandler::process(ClientSocket* socket, std::vector<std::string>& params)
 	{
-		/*
 		std::string szFileName;
-
-
-
-		ifstream isFile(params[1], ifstream::binary);
-
-		if (!isFile.is_open())
-		{
-			throw("cannot open file");
-		}
 
 		char* buff = new char[BUFFERSIZE + 1];
 
-		streampos end;
+		socket->readline(buff, BUFFERSIZE);
+		
+		int iFileSize = stoi(buff);
 
-		isFile.seekg(0, isFile.end);
-		end = isFile.tellg();
-		isFile.seekg(0, isFile.beg);
-
-		// Send total size to client
-		socket->writeline(to_string(end).c_str());
-
-		while (isFile.good())
+		if (iFileSize >= 0)
 		{
-			isFile.get(buff, BUFFERSIZE);
-			socket->write(buff);
-		}
+			int iBytesToRead = iFileSize;
 
+			ofstream osFile("test.test");
+
+
+			while (iBytesToRead > 0)
+			{
+				iBytesToRead -= socket->read(buff, iBytesToRead > BUFFERSIZE ? BUFFERSIZE : iBytesToRead);
+				osFile << buff;
+				cout << "\rProgress: " << (iFileSize - iBytesToRead) / 1000 << "/" << iFileSize / 1000 << " KB";
+			}
+
+			osFile.close();
+			cout << endl;
+		}
+		else
+		{
+			socket->readline(buff, BUFFERSIZE);
+			cout << buff << "\n";
+		}
+		
 		delete[] buff;
-		*/
 	}
 
 	CommandHandler* GetCommandHandler::clone()
