@@ -49,7 +49,7 @@ int main()
 		}
 		catch (SocketException& ex)
 		{
-			wcout << "Connection lost..." << endl;
+			std::wcout << L"Connection lost..." << endl;
 		}
 		catch (invalid_argument& ex)
 		{
