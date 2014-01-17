@@ -19,36 +19,58 @@ namespace fwsync
 
 	void Client::connect(const char* szIp, int iPort)
 	{
-		ClientSocket* socket = new ClientSocket(szIp, iPort);
+		ClientSocket* socket = NULL;
 		
+		try
+		{
+			socket = new ClientSocket(szIp, iPort);
+		}
+		catch (runtime_error& ex)
+		{
+			delete socket;
+			throw(ex);
+		}
+
 		ReadFromSocket(socket); //Read welcome message
 
-		string szLine;
+		wstring szLine;
 
-		while (getline(std::cin, szLine))
+		while (getline(wcin, szLine))
 		{
 			if (szLine.size() == 0)
 				continue;
 
 			socket->writeline(szLine.c_str());
 
-			vector<string> params = *new vector<string>();
+			vector<wstring> params = vector<wstring>();
 
 			strsplit(szLine, params);
 
-			for (int i = 0; i < params[0].length(); i++)
-				params[0][i] = tolower(params[0][i]);
-
-			CommandHandler* pCommand = CommandFactory::create(params[0]);
-
-			if (pCommand != NULL)
+			if (params.size() > 0)
 			{
-				pCommand->process(socket, params);
+
+				for (int i = 0; i < params[0].length(); i++)
+					params[0][i] = tolower(params[0][i]);
+
+				CommandHandler* pCommand = CommandFactory::create(params[0]);
+
+				if (pCommand != NULL)
+				{
+					try
+					{
+						pCommand->process(socket, params);
+					}
+					catch (const wchar_t* ex)
+					{
+						wcout << ex << endl;
+					}
+				}
+				else
+					CommandFactory::create(L"DEFAULT")->process(socket, params);
+
+				delete pCommand;
 			}
-			else
-				CommandFactory::create("DEFAULT")->process(socket, params);
 			
-			delete pCommand;
 		}
 
 		delete socket;
@@ -56,12 +78,12 @@ namespace fwsync
 
 	void Client::ReadFromSocket(Socket* socket)
 	{
-		char line[MAXPATH + 1];
+		wchar_t line[MAXPATH + 1];
 
 		while (socket->readline(line, MAXPATH) > 0)
 		{
 			//vector<string> params = *new vector<string>();
-			cout << line << "\n";
+			wcout << line << L"\n";
 		}
 	}
 }

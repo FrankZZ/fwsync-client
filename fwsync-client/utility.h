@@ -4,7 +4,10 @@
 #include <vector>
 #include <sstream>
 
+using namespace std;
+
 namespace fwsync
 {
-	void strsplit(std::string str, std::vector<std::string> &tokens);
+	void strsplit(wstring str, vector<wstring> &tokens);
+	void strsplit(string str, vector<string> &tokens);
 }

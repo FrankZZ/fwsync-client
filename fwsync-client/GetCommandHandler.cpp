@@ -1,10 +1,13 @@
 #include "GetCommandHandler.h"
+
+using namespace std;
+
 namespace fwsync
 {
 
-	GetCommandHandler GetCommandHandler::m_getCmdHandler(std::string("get"));
+	GetCommandHandler GetCommandHandler::m_getCmdHandler(wstring(L"get"));
 
-	GetCommandHandler::GetCommandHandler(std::string sCommand) : CommandHandler(sCommand)
+	GetCommandHandler::GetCommandHandler(wstring sCommand) : CommandHandler(sCommand)
 	{
 
 	}
@@ -14,14 +17,13 @@ namespace fwsync
 
 	}
 
-	void GetCommandHandler::process(ClientSocket* socket, std::vector<std::string>& params)
+	void GetCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
 	{
 		if (params.size() != 3)
-			throw("Syntax error");
+			throw(L"Syntax error");
+		
 
-		std::string szFileName;
-
-		char* buff = new char[BUFFERSIZE + 1];
+		char buff[BUFFERSIZE + 1];
 
 		socket->readline(buff, BUFFERSIZE);
 		
@@ -31,12 +33,11 @@ namespace fwsync
 		{
 			int iBytesToRead = iFileSize;
 
-			ofstream osFile(params[2], ofstream::binary | ofstream::trunc);
+			ofstream osFile("test.exe", ofstream::binary | ofstream::trunc);
 			
 			if (osFile.bad())
 			{
-				delete[] buff;
-				throw("Cannot open file for writing");
+				throw(L"Cannot open file for writing");
 			}
 			
 			/*void (*prev_handler) (int);
@@ -51,9 +52,7 @@ namespace fwsync
 				}
 				catch (SocketException& ex)
 				{
-
 					osFile.close();
-					delete[] buff;
 					throw ex;
 				}
 	
@@ -61,23 +60,21 @@ namespace fwsync
 				
 				iBytesToRead -= iBytesRead;
 
-				cout << "\rProgress: " << (((long long)(iFileSize - iBytesToRead) * 100) / iFileSize) << "% " << (iFileSize - iBytesToRead) / 1000 << "/" << iFileSize / 1000 << " KB";
+				wcout << L"\rProgress: " << (((long long)(iFileSize - iBytesToRead) * 100) / iFileSize) << "% " << (iFileSize - iBytesToRead) / 1000 << L"/" << iFileSize / 1000 << L" KB";
 			}
 
 			//signal(SIGTERM, prev_handler);
 
 			osFile.close();
-			cout << endl << "Done." << endl;
+			wcout << endl << L"Done." << endl;
 		}
 		else
 		{
 			while (socket->readline(buff, BUFFERSIZE) > 0)
 			{
-				cout << buff << "\n";
+				wcout << buff << L"\n";
 			}
 		}
-		
-		delete[] buff;
 	}
 
 	void interrupt(int param)

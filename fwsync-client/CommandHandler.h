@@ -3,14 +3,16 @@
 #include "socket.h"
 #include <vector>
 
+using namespace std;
+
 namespace fwsync
 {
 	class CommandHandler
 	{
 	public:
 		CommandHandler();
-		CommandHandler(std::string);
-		virtual void process(ClientSocket*, std::vector<std::string>&) = 0;
+		CommandHandler(wstring);
+		virtual void process(ClientSocket*, vector<wstring>&) = 0;
 		virtual CommandHandler* clone() = 0;
 	};
 }

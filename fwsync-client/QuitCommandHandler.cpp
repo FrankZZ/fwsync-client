@@ -1,10 +1,13 @@
 #include "QuitCommandHandler.h"
+
+using namespace std;
+
 namespace fwsync
 {
 
-	QuitCommandHandler QuitCommandHandler::m_quitCmdHandler(std::string("quit"));
+	QuitCommandHandler QuitCommandHandler::m_quitCmdHandler(wstring(L"quit"));
 
-	QuitCommandHandler::QuitCommandHandler(std::string sCommand) : CommandHandler(sCommand)
+	QuitCommandHandler::QuitCommandHandler(wstring sCommand) : CommandHandler(sCommand)
 	{
 
 	}
@@ -14,9 +17,9 @@ namespace fwsync
 
 	}
 
-	void QuitCommandHandler::process(ClientSocket* socket, std::vector<std::string>& params)
+	void QuitCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
 	{
-		socket->writeline("Bye.");
+		socket->writeline(L"Bye.");
 		socket->close();
 	}
 

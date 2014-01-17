@@ -1,11 +1,13 @@
 #include "DefaultCommandHandler.h"
 
+using namespace std;
+
 namespace fwsync
 {
 
-	DefaultCommandHandler DefaultCommandHandler::m_infoCmdHandler(std::string("DEFAULT"));
+	DefaultCommandHandler DefaultCommandHandler::m_defaultCmdHandler(wstring(L"DEFAULT"));
 
-	DefaultCommandHandler::DefaultCommandHandler(std::string sCommand) : CommandHandler(sCommand)
+	DefaultCommandHandler::DefaultCommandHandler(wstring sCommand) : CommandHandler(sCommand)
 	{
 
 	}
@@ -15,14 +17,15 @@ namespace fwsync
 
 	}
 
-	void DefaultCommandHandler::process(ClientSocket* socket, std::vector<std::string>& params)
+	void DefaultCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
 	{
-		char line[MAXPATH + 1];
+		wchar_t line[MAXPATH + 1];
 
 		while (socket->readline(line, MAXPATH) > 0)
 		{
-			cout << line << "\n";
+			wcout << line << endl;
 		}
+		
 	}
 
 	CommandHandler* DefaultCommandHandler::clone()

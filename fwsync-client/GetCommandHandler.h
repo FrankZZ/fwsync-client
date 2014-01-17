@@ -16,12 +16,11 @@ namespace fwsync
 	{
 		private:
 			GetCommandHandler();
-			GetCommandHandler(string);
-			string m_szFileName;
+			GetCommandHandler(wstring);
 			
 
 		public:
-			virtual void process(ClientSocket* socket, std::vector<std::string>& params);
+			virtual void process(ClientSocket* socket, vector<wstring>& params);
 			virtual CommandHandler* clone();
 
 		private:

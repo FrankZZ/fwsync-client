@@ -3,6 +3,9 @@
 #include <string>
 #include "socket.h"
 #include "constants.h"
+#include "SocketException.h"
+
+using namespace std;
 
 namespace fwsync
 {
@@ -11,13 +14,13 @@ namespace fwsync
 	{
 	private:
 		DefaultCommandHandler();
-		DefaultCommandHandler(std::string);
+		DefaultCommandHandler(wstring);
 
 	public:
-		virtual void process(ClientSocket*, std::vector<std::string>&);
+		virtual void process(ClientSocket*, vector<wstring>&);
 		virtual CommandHandler* clone();
 
 	private:
-		static DefaultCommandHandler m_infoCmdHandler;
+		static DefaultCommandHandler m_defaultCmdHandler;
 	};
 }

@@ -3,20 +3,22 @@
 #include <string>
 #include "CommandHandler.h"
 
+using namespace std;
+
 namespace fwsync
 {
 
 	class CommandFactory
 	{
 	public:
-		static CommandHandler* create(std::string);
+		static CommandHandler* create(wstring);
 
 	private:
-		typedef std::map<std::string, CommandHandler*> CommandHandlerMap;
+		typedef map<wstring, CommandHandler*> CommandHandlerMap;
 
 		static CommandHandlerMap& getMap();
 
-		static void assign(std::string, CommandHandler*);
+		static void assign(wstring, CommandHandler*);
 		friend class CommandHandler;
 	};
 }

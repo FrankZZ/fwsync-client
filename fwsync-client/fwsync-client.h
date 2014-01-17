@@ -8,6 +8,7 @@
 #include "socket.h"
 #include "CommandHandler.h"
 #include "CommandFactory.h"
+#include "SocketException.h"
 
 namespace fwsync
 {
