@@ -44,7 +44,7 @@ namespace fwsync
 
 			vector<wstring> params = vector<wstring>();
 
-			strsplit(szLine, params);
+			wstrsplit(szLine, params, L' ');
 
 			if (params.size() > 0)
 			{

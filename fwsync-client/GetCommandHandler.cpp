@@ -20,7 +20,7 @@ namespace fwsync
 	void GetCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
 	{
 		if (params.size() != 3)
-			throw(L"Syntax error");
+			throw(L"SYNTAX: GET [remote file] [local file]");
 		
 
 		char buff[BUFFERSIZE + 1];
@@ -33,7 +33,7 @@ namespace fwsync
 		{
 			int iBytesToRead = iFileSize;
 
-			ofstream osFile("test.exe", ofstream::binary | ofstream::trunc);
+			ofstream osFile(params[2], ofstream::binary | ofstream::trunc);
 			
 			if (osFile.bad())
 			{
@@ -70,9 +70,10 @@ namespace fwsync
 		}
 		else
 		{
-			while (socket->readline(buff, BUFFERSIZE) > 0)
+			wchar_t errbuff[BUFFERSIZE + 1];
+			while (socket->readline(errbuff, BUFFERSIZE) > 0)
 			{
-				wcout << buff << L"\n";
+				wcout << errbuff << L"\n";
 			}
 		}
 	}

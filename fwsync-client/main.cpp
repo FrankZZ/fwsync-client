@@ -22,7 +22,7 @@ void askConnect(Client& client)
 
 		vector<std::string> params;
 
-		strsplit(szLine, params);
+		strsplit(szLine, params, ' ');
 
 		if (params.size() != 2)
 		{

@@ -8,6 +8,6 @@ using namespace std;
 
 namespace fwsync
 {
-	void strsplit(wstring str, vector<wstring> &tokens);
-	void strsplit(string str, vector<string> &tokens);
+	void wstrsplit(wstring str, vector<wstring> &tokens, wchar_t delim);
+	void strsplit(string str, vector<string> &tokens, char delim);
 }
