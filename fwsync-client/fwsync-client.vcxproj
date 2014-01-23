@@ -91,6 +91,7 @@
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketException.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SyncCommandHandler.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
@@ -104,6 +105,7 @@
     <ClCompile Include="QuitCommandHandler.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="SyncCommandHandler.cpp" />
     <ClCompile Include="utility.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

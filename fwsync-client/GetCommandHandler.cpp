@@ -5,9 +5,9 @@ using namespace std;
 namespace fwsync
 {
 
-	GetCommandHandler GetCommandHandler::m_getCmdHandler(wstring(L"get"));
+	GetCommandHandler GetCommandHandler::m_getCmdHandler(string("get"));
 
-	GetCommandHandler::GetCommandHandler(wstring sCommand) : CommandHandler(sCommand)
+	GetCommandHandler::GetCommandHandler(string sCommand) : CommandHandler(sCommand)
 	{
 
 	}
@@ -17,10 +17,10 @@ namespace fwsync
 
 	}
 
-	void GetCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
+	void GetCommandHandler::process(ClientSocket* socket, vector<string>& params)
 	{
 		if (params.size() != 3)
-			throw(L"SYNTAX: GET [remote file] [local file]");
+			throw("SYNTAX: GET [remote file] [local file]");
 		
 
 		char buff[BUFFERSIZE + 1];
@@ -37,7 +37,7 @@ namespace fwsync
 			
 			if (osFile.bad())
 			{
-				throw(L"Cannot open file for writing");
+				throw("Cannot open file for writing");
 			}
 			
 			/*void (*prev_handler) (int);

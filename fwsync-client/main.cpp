@@ -11,7 +11,7 @@ using namespace fwsync;
 
 void askConnect(Client& client)
 {
-	wcout << L"Please type [host] [port]" << endl;
+	wcout << "Please type [host] [port]" << endl;
 
 	string szLine;
 
@@ -26,7 +26,7 @@ void askConnect(Client& client)
 
 		if (params.size() != 2)
 		{
-			wcout << L"Syntax error" << endl;
+			wcout << "Syntax error" << endl;
 			continue;
 		}
 
@@ -49,19 +49,19 @@ int main()
 		}
 		catch (SocketException& ex)
 		{
-			std::wcout << L"Connection lost..." << endl;
+			std::cout << "Connection lost..." << endl;
 		}
 		catch (invalid_argument& ex)
 		{
-			std::wcout << L"Invalid argument" << endl;
+			std::cout << "Invalid argument" << endl;
 		}
 		catch (out_of_range& ex)
 		{
-			std::wcout << L"Port out of range" << endl;
+			std::cout << "Port out of range" << endl;
 		}
 		catch (runtime_error& ex)
 		{
-			std::wcout << L"Cannot connect" << endl;
+			std::cout << "Cannot connect" << endl;
 		}
 	}
 

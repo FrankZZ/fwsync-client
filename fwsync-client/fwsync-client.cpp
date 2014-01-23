@@ -33,18 +33,18 @@ namespace fwsync
 
 		ReadFromSocket(socket); //Read welcome message
 
-		wstring szLine;
+		string szLine;
 
-		while (getline(wcin, szLine))
+		while (getline(cin, szLine))
 		{
 			if (szLine.size() == 0)
 				continue;
 
 			socket->writeline(szLine.c_str());
 
-			vector<wstring> params = vector<wstring>();
+			vector<string> params = vector<string>();
 
-			wstrsplit(szLine, params, L' ');
+			strsplit(szLine, params, ' ');
 
 			if (params.size() > 0)
 			{
@@ -60,13 +60,13 @@ namespace fwsync
 					{
 						pCommand->process(socket, params);
 					}
-					catch (const wchar_t* ex)
+					catch (const char* ex)
 					{
-						wcout << ex << endl;
+						cout << ex << endl;
 					}
 				}
 				else
-					CommandFactory::create(L"DEFAULT")->process(socket, params);
+					CommandFactory::create("DEFAULT")->process(socket, params);
 
 				delete pCommand;
 			}

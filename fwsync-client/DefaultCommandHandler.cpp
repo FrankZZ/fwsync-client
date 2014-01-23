@@ -5,9 +5,9 @@ using namespace std;
 namespace fwsync
 {
 
-	DefaultCommandHandler DefaultCommandHandler::m_defaultCmdHandler(wstring(L"DEFAULT"));
+	DefaultCommandHandler DefaultCommandHandler::m_defaultCmdHandler(string("DEFAULT"));
 
-	DefaultCommandHandler::DefaultCommandHandler(wstring sCommand) : CommandHandler(sCommand)
+	DefaultCommandHandler::DefaultCommandHandler(string sCommand) : CommandHandler(sCommand)
 	{
 
 	}
@@ -17,7 +17,7 @@ namespace fwsync
 
 	}
 
-	void DefaultCommandHandler::process(ClientSocket* socket, vector<wstring>& params)
+	void DefaultCommandHandler::process(ClientSocket* socket, vector<string>& params)
 	{
 		wchar_t line[MAXPATH + 1];
 
