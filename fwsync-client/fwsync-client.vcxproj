@@ -81,9 +81,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\fwsync-server\fwsync-server\Directory.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
     <ClInclude Include="fwsync-client.h" />
     <ClInclude Include="GetCommandHandler.h" />
     <ClInclude Include="DefaultCommandHandler.h" />
@@ -96,8 +99,11 @@
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\fwsync-server\fwsync-server\Directory.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="CommandHandler.cpp" />
+    <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
     <ClCompile Include="fwsync-client.cpp" />
     <ClCompile Include="GetCommandHandler.cpp" />
     <ClCompile Include="DefaultCommandHandler.cpp" />

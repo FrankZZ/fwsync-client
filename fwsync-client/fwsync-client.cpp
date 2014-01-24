@@ -78,12 +78,12 @@ namespace fwsync
 
 	void Client::ReadFromSocket(Socket* socket)
 	{
-		wchar_t line[MAXPATH + 1];
+		char line[MAXPATH + 1];
 
 		while (socket->readline(line, MAXPATH) > 0)
 		{
 			//vector<string> params = *new vector<string>();
-			wcout << line << L"\n";
+			cout << line << "\n";
 		}
 	}
 }

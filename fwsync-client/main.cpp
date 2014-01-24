@@ -11,7 +11,7 @@ using namespace fwsync;
 
 void askConnect(Client& client)
 {
-	wcout << "Please type [host] [port]" << endl;
+	cout << "Please type [host] [port]" << endl;
 
 	string szLine;
 
@@ -26,7 +26,7 @@ void askConnect(Client& client)
 
 		if (params.size() != 2)
 		{
-			wcout << "Syntax error" << endl;
+			cout << "Syntax error" << endl;
 			continue;
 		}
 
@@ -36,9 +36,7 @@ void askConnect(Client& client)
 }
 
 int main()
-{
-	_setmode(_fileno(stdout), _O_U16TEXT);
-	
+{	
 	Client client = Client();
 
 	while (1)
